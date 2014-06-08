@@ -1,0 +1,117 @@
+package org.tzi.use.gui.plugins.tgg;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.util.Map;
+
+import javax.swing.JFileChooser;
+
+import org.tzi.use.gui.main.MainWindow;
+import org.tzi.use.gui.main.ModelBrowser;
+import org.tzi.use.gui.main.ModelBrowserSorting;
+import org.tzi.use.gui.main.ModelBrowserSorting.SortChangeEvent;
+import org.tzi.use.gui.main.ModelBrowserSorting.SortChangeListener;
+
+import org.tzi.use.gui.util.ExtFileFilter;
+
+import org.tzi.use.main.Session;
+import org.tzi.use.parser.tgg.RTLCompiler;
+import org.tzi.use.runtime.gui.IPluginAction;
+import org.tzi.use.runtime.gui.IPluginActionDelegate;
+import org.tzi.use.tgg.TggRuleCollection;
+import org.tzi.use.uml.mm.MModel;
+import org.tzi.use.uml.sys.MSystem;
+import org.tzi.use.uml.sys.MSystemException;
+import org.tzi.use.util.Log;
+
+public class ActionLoadTggRules implements IPluginActionDelegate {
+    private TggRuleCollection fTggRules;
+	private JFileChooser fChooser;
+	
+	public ActionLoadTggRules() {
+
+	}
+	private void loadTggRules(String tggRuleFileName, MainWindow mainWindow, MSystem system){
+    	//if (!Options.doGraTra) return;
+
+    	InputStream r = null;
+	    try {
+	    	Log.verbose("compiling tgg specification...");
+	    	r = new BufferedInputStream(new FileInputStream(tggRuleFileName));
+	    	fTggRules = RTLCompiler.compileSpecification(r,
+	    			tggRuleFileName, new PrintWriter(System.err),
+	    			system.model());
+	    } catch (FileNotFoundException e) {
+	    	Log.error("File `" + tggRuleFileName + "' not found.");
+	    	//System.exit(1);
+	    } catch (MSystemException e) {
+			// TODO Auto-generated catch block
+	    	Log.error("Error with the tgg specification");
+		} finally {
+	    	if (r != null)
+	    		try {
+	    			r.close();
+	    		} catch (IOException ex) {
+	    			// ignored
+	    		}
+	    }
+	    //mainWindow.getModelBrowser().get.getfTop.removeAllChildren();
+		//mainWindow.getModelBrowser().stateChanged(new SortChangeEvent());
+	    //createNodes(fTop);
+	    //fTreeModel.reload();
+        //fHtmlPane.setText( "" );        
+    }
+
+	
+	public void performAction(IPluginAction pluginAction) {
+		Session fSession = pluginAction.getSession();
+		MainWindow fMainWindow = pluginAction.getParent();
+		MSystem fSystem = fSession.system();
+		MModel fModel = fSystem.model();
+		ModelBrowser fModelBrowser = fMainWindow.getModelBrowser();
+		
+    	//ActionFileOpenTggSpec() {
+    	//	super("Open TGG specification...", new ImageIcon(Options.iconDir
+    		//		+ "Tgg.gif"));
+    	//}
+    		String path;
+    		//fModelBrowser.loadTggRules("/home/duchanh/uc2dm_ruleCollection.txt");
+    		//return;
+    		// reuse chooser if possible
+    		if (fChooser == null) {
+    			path = System.getProperty("user.dir");
+    			fChooser = new JFileChooser(path);
+    			ExtFileFilter filter = new ExtFileFilter("tgg",
+    				"TGG specifications");
+    			fChooser.addChoosableFileFilter(filter);
+    			fChooser.setDialogTitle("Open TGG specification");
+    		}
+    		int returnVal = fChooser.showOpenDialog(fMainWindow);
+    		if (returnVal != JFileChooser.APPROVE_OPTION)
+    			return;
+
+    		path = fChooser.getCurrentDirectory().toString();
+   			//File f = new File(path, fChooser.getSelectedFile().getName());
+   			//Log.verbose("File " + f);
+   			//fLogPanel.clear();
+   			//showLogPanel();
+   			path = fChooser.getCurrentDirectory().getAbsolutePath() + "/" + fChooser.getSelectedFile().getName();
+   			//System.out.println(path);
+   			//fLogWriter.println("compiling TGG specification " + path + "...");   			
+   			//this.getModelBrowser().loadTggRules("/home/duchanh/uc2dm_ruleCollection.txt");
+   			loadTggRules(path, fMainWindow, fSystem);
+   			//fLogWriter.println("done.");
+   			
+   			//Map collections = fModelBrowser.getModelCollections();
+   			//collections.put("Tgg Rules", fTggRules.getTggRules() );
+   			fModelBrowser.addPluginCollection("Tgg Rules", fTggRules.getTggRules());
+   			//fModelBrowser.stateChanged(new ModelBrowserSorting.SortChangeEvent(this));
+   			//ModelBrowserSorting.SortChangeEvent e = new ModelBrowserSorting.SortChangeEvent(this);
+	}
+}

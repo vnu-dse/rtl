@@ -1,0 +1,39 @@
+<b>model</b> Company
+
+--<font color="red"> classes</font>
+
+<b>class</b> Employee
+<b>attributes</b>
+  name : String
+  salary : Integer
+<b>end</b>
+
+<b>class</b> Department
+<b>attributes</b>
+  name : String
+  location : String
+  budget : Integer
+<b>end</b>
+
+<b>class</b> Project 
+<b>attributes</b>
+  name : String
+  budget : Integer
+<b>end</b>
+
+--<font color="red"> associations</font>
+
+<b>association</b> WorksIn <b>between</b>
+  Employee[*]
+  Department[1..*]
+<b>end</b>
+
+<b>association</b> WorksOn <b>between</b>
+  Employee[*]
+  Project[*]
+<b>end</b>
+
+<b>association</b> Controls <b>between</b>
+  Department[1]
+  Project[*]
+<b>end</b>

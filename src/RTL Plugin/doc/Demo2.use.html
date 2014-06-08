@@ -1,0 +1,29 @@
+--<font color="red"> OCL constraints</font>
+
+<b>constraints</b>
+
+<b>context</b> Department 
+    --<font color="red"> the number of employees working in a department must</font>
+    --<font color="red"> be greater or equal to the number of projects </font>
+    --<font color="red"> controlled by the department</font>
+  <b>inv</b> MoreEmployeesThanProjects:
+    self.employee->size >= self.project->size 
+
+<b>context</b> Employee 
+    --<font color="red"> employees get a higher salary when they work on</font>
+    --<font color="red"> more projects</font>
+  <b>inv</b> MoreProjectsHigherSalary:
+    Employee.allInstances->forAll(e1, e2 | 
+      e1.project->size > e2.project->size 
+        <b>implies</b> e1.salary > e2.salary)
+
+<b>context</b> Project
+    --<font color="red"> the budget of a project must not exceed the </font>
+    --<font color="red"> budget of the controlling department</font>
+  <b>inv</b> BudgetWithinDepartmentBudget:
+    self.budget <= self.department.budget
+
+    --<font color="red"> employees working on a project must also work in the</font>
+    --<font color="red"> controlling department</font>
+  <b>inv</b> EmployeesInControllingDepartment:
+    self.department.employee->includesAll(self.employee)

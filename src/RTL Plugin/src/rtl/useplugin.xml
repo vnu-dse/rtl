@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?use version="3.0.0"?>
+<plugin name="RestrictedGraphTrafo" version="0.1">
+	<actions>
+		<action label="Triple rules" icon="resources/Tgg.gif"
+			class="org.tzi.rtl.gui.plugins.tgg.ActionLoadTggRules"
+			tooltip="Triple Rule Visualizer"
+			menu="RestrictedGraphTrafo Plugin"
+			menuitem="Triple Rule Visualizer"
+			toolbaritem="Triple Rule Visualizer"
+			id="org.tzi.rtl.gui.plugins.tgg.ActionLoadTggRules">
+		</action>
+		<action label="RTL compiler" icon="resources/RTL.png"
+			class="org.tzi.rtl.gui.plugins.tgg.ActionParserRTL"
+			tooltip="Restricted Graph Trafo Parser"
+			menu="RestrictedGraphTrafo Plugin"
+			menuitem="Restricted Graph Trafo Parser"
+			toolbaritem="Restricted Graph Trafo Parser"
+			id="org.tzi.rtl.gui.plugins.tgg.ActionParserRTL">
+		</action>
+		<action label="Run test case" icon="resources/integration.png"
+			class="org.tzi.rtl.gui.plugins.tgg.ActionCheckIntegration"
+			tooltip="Run test case"
+			menu="RestrictedGraphTrafo Plugin"
+			menuitem="Run test case"
+			toolbaritem="Run test case"
+			id="org.tzi.rtl.gui.plugins.tgg.ActionCheckIntegration">
+		</action>
+		<action label="Find all match" icon="resources/findMatch.png"
+			class="org.tzi.rtl.gui.plugins.tgg.ActionFindMatchForward"
+			tooltip="Find all match"
+			menu="Forward transformation"
+			menuitem="Find match..."
+			toolbaritem="Find all match"
+			id="org.tzi.rtl.gui.plugins.tgg.ActionFindMatchForward">
+		</action>
+		
+		<action label="Run match" icon="resources/runMatch.png"
+			class="org.tzi.rtl.gui.plugins.tgg.ActionRunMatchForward"
+			tooltip="Run match"
+			menu="Forward transformation"
+			menuitem="Run"
+			toolbaritem="Run match"
+			id="org.tzi.rtl.gui.plugins.tgg.ActionRunMatchForward">
+		</action>
+		<action label="Next match" icon="resources/nextMatch.png"
+			class="org.tzi.rtl.gui.plugins.tgg.ActionNextMatchForward"
+			tooltip="Next match"
+			menu="Forward transformation"
+			menuitem="Next"
+			toolbaritem="Next match"
+			id="org.tzi.rtl.gui.plugins.tgg.ActionNextMatchForward">
+		</action>
+		
+		<action label="Previous match" icon="resources/previousMatch.png"
+			class="org.tzi.rtl.gui.plugins.tgg.ActionPreviousMatchForward"
+			tooltip="Previous match"
+			menu="Forward transformation"
+			menuitem="Previous"
+			toolbaritem="Previous match"
+			id="org.tzi.rtl.gui.plugins.tgg.ActionPreviousMatchForward">
+		</action>
+	</actions>
+</plugin>

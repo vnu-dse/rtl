@@ -1,0 +1,12 @@
+--<font color="red"> constraints</font>
+
+<b>constraints</b>
+
+<b>context</b> Company::hire(p : Person)
+  <b>pre</b>  hirePre1: p.isDefined()
+  <b>pre</b>  hirePre2: employee->excludes(p)
+  <b>post</b> hirePost: employee->includes(p)
+
+<b>context</b> Company::fire(p : Person)
+  <b>pre</b>  firePre:  employee->includes(p)
+  <b>post</b> firePost: employee->excludes(p)

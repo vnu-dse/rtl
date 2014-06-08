@@ -1,0 +1,22 @@
+<b>model</b> Graph
+
+<b>class</b> Node
+<b>operations</b>
+  newTarget()
+<b>end</b>
+
+<b>association</b> Edge <b>between</b>
+  Node[*] <b>role</b> source
+  Node[*] <b>role</b> target
+<b>end</b>
+
+<b>constraints</b>
+
+<b>context</b> Node::newTarget()
+  --<font color="red"> the operation must link exactly one target node</font>
+  <b>post</b> oneNewTarget: 
+    (target - target<b>@pre</b>)->size() = 1 
+
+  --<font color="red"> the target node must not exist before</font>
+  <b>post</b> targetNodeIsNew: 
+    (target - target<b>@pre</b>)->forAll(n | n.oclIsNew())

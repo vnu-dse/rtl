@@ -1,0 +1,5 @@
+<b>context</b> Person::raiseSalary(rate : Real) : Real
+  <b>post</b> raiseSalaryPost: 
+    salary = salary<b>@pre</b> * (1.0 + rate)
+  <b>post</b> resultPost:
+    result = salary
