@@ -259,6 +259,16 @@ public class MainWindow extends JFrame implements StateChangeListener {
         /* Restricted Graph Trafo */
         addToToolBar(fToolBar, fActionRTLFileOpenSpec,
                 "Open RestrictedGraphTrafo form");
+        addToToolBar(fToolBar, fRTLCheckIntegration,
+                "Check RTL integration");
+        addToToolBar(fToolBar, fRTLFindAllMatchForward,
+                "Find all RTL match forward");
+        addToToolBar(fToolBar, fRTLPreviousMatchForward,
+                "Previous RTL match forward");
+        addToToolBar(fToolBar, fRTLNextMatchForward,
+                "Next RTL match forward");
+        addToToolBar(fToolBar, fRTLRunMatchForward,
+                "Run RTL match forward");
 
         // create the menubar
 		fMenuBar = new JMenuBar();
@@ -878,8 +888,13 @@ public class MainWindow extends JFrame implements StateChangeListener {
 
     private ActionHelpAbout fActionHelpAbout = new ActionHelpAbout();
 
-    /* Add RestrictedGraphTrafo File Open */
+    /* RestrictedGraphTrafo Action */
     private ActionFileOpenRTLSpec fActionRTLFileOpenSpec = new ActionFileOpenRTLSpec();
+    private ActionCheckRTLIntegration fRTLCheckIntegration = new ActionCheckRTLIntegration();
+    private ActionFindAllRTLMatchForward fRTLFindAllMatchForward = new ActionFindAllRTLMatchForward();
+    private ActionNextRTLMatchForward fRTLNextMatchForward = new ActionNextRTLMatchForward();
+    private ActionPreviousRTLMatchForward fRTLPreviousMatchForward = new ActionPreviousRTLMatchForward();
+    private ActionRunRTLMatchForward fRTLRunMatchForward = new ActionRunRTLMatchForward();
 
     /**
      * Opens and compiles a specification file.
@@ -970,6 +985,63 @@ public class MainWindow extends JFrame implements StateChangeListener {
             fRTLParamForm.setVisible(true);
         }
     }
+
+    /* RestrictedGraphTrafo ActionCheckIntegration */
+    private class ActionCheckRTLIntegration extends AbstractAction {
+        ActionCheckRTLIntegration() {
+            super("Check RTL integration", new ImageIcon(Options.iconDir
+                    + "RTLIntegration.gif"));
+        }
+
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+
+    /* RestrictedGraphTrafo ActionFindAllMatchForward */
+    private class ActionFindAllRTLMatchForward extends AbstractAction {
+        ActionFindAllRTLMatchForward() {
+            super("Find all RTL match forward", new ImageIcon(Options.iconDir
+                    + "RTLFindMatch.gif"));
+        }
+
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+
+
+    /* RestrictedGraphTrafo ActionNextRTLMatchForward */
+    private class ActionNextRTLMatchForward extends AbstractAction {
+        ActionNextRTLMatchForward() {
+            super("Next RTL match forward", new ImageIcon(Options.iconDir
+                    + "RTLNextMatch.gif"));
+        }
+
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+
+    /* RestrictedGraphTrafo ActionPreviousRTLMatchForward */
+    private class ActionPreviousRTLMatchForward extends AbstractAction {
+        ActionPreviousRTLMatchForward() {
+            super("Previous RTL match forward", new ImageIcon(Options.iconDir
+                    + "RTLPreviousMatch.gif"));
+        }
+
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+
+    /* RestrictedGraphTrafo ActionRunRTLMatchForward */
+    private class ActionRunRTLMatchForward extends AbstractAction {
+        ActionRunRTLMatchForward() {
+            super("Run RTL match forward", new ImageIcon(Options.iconDir
+                    + "RTLRunMatch.gif"));
+        }
+
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+
 
     /**
      * Saves commands executed so far to a script file.
