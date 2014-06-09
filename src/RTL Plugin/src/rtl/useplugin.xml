@@ -2,14 +2,6 @@
 <?use version="3.0.0"?>
 <plugin name="RestrictedGraphTrafo" version="0.1">
 	<actions>
-		<action label="Triple rules" icon="resources/Tgg.gif"
-			class="org.tzi.rtl.gui.plugins.tgg.ActionLoadTggRules"
-			tooltip="Triple Rule Visualizer"
-			menu="RestrictedGraphTrafo Plugin"
-			menuitem="Triple Rule Visualizer"
-			toolbaritem="Triple Rule Visualizer"
-			id="org.tzi.rtl.gui.plugins.tgg.ActionLoadTggRules">
-		</action>
 		<action label="RTL compiler" icon="resources/RTL.png"
 			class="org.tzi.rtl.gui.plugins.tgg.ActionParserRTL"
 			tooltip="Restricted Graph Trafo Parser"
@@ -18,7 +10,7 @@
 			toolbaritem="Restricted Graph Trafo Parser"
 			id="org.tzi.rtl.gui.plugins.tgg.ActionParserRTL">
 		</action>
-		<action label="Run test case" icon="resources/integration.png"
+		<action label="Run test case" icon="resources/RTLIntegration.png"
 			class="org.tzi.rtl.gui.plugins.tgg.ActionCheckIntegration"
 			tooltip="Run test case"
 			menu="RestrictedGraphTrafo Plugin"
@@ -26,7 +18,7 @@
 			toolbaritem="Run test case"
 			id="org.tzi.rtl.gui.plugins.tgg.ActionCheckIntegration">
 		</action>
-		<action label="Find all match" icon="resources/findMatch.png"
+		<action label="Find all match" icon="resources/RTLFindMatch.png"
 			class="org.tzi.rtl.gui.plugins.tgg.ActionFindMatchForward"
 			tooltip="Find all match"
 			menu="Forward transformation"
@@ -35,7 +27,7 @@
 			id="org.tzi.rtl.gui.plugins.tgg.ActionFindMatchForward">
 		</action>
 		
-		<action label="Run match" icon="resources/runMatch.png"
+		<action label="Run match" icon="resources/RTLRunMatch.png"
 			class="org.tzi.rtl.gui.plugins.tgg.ActionRunMatchForward"
 			tooltip="Run match"
 			menu="Forward transformation"
@@ -43,7 +35,7 @@
 			toolbaritem="Run match"
 			id="org.tzi.rtl.gui.plugins.tgg.ActionRunMatchForward">
 		</action>
-		<action label="Next match" icon="resources/nextMatch.png"
+		<action label="Next match" icon="resources/RTLNextMatch.png"
 			class="org.tzi.rtl.gui.plugins.tgg.ActionNextMatchForward"
 			tooltip="Next match"
 			menu="Forward transformation"
@@ -52,7 +44,7 @@
 			id="org.tzi.rtl.gui.plugins.tgg.ActionNextMatchForward">
 		</action>
 		
-		<action label="Previous match" icon="resources/previousMatch.png"
+		<action label="Previous match" icon="resources/RTLPreviousMatch.png"
 			class="org.tzi.rtl.gui.plugins.tgg.ActionPreviousMatchForward"
 			tooltip="Previous match"
 			menu="Forward transformation"
