@@ -40,7 +40,7 @@ public class ActionFindAllMatchForward  implements IPluginActionDelegate {
 	}
 	@SuppressWarnings("unchecked")
 	public static void findAllMatch(PrintWriter fLogWriter, Session fSession){
-    	fTggRuleCollection = ActionLoadTggRules.getfTggRules();
+    	fTggRuleCollection = MainWindow.instance().getModelBrowser().getTggRuleCollection();
     	MatchingEachPart.setListMatch(null);
     	MatchingEachPart.getMatchHasRun().clear();
     	Matching firstMatch = new MatchingEachPart();

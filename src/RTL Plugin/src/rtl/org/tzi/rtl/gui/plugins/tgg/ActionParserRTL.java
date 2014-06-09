@@ -25,4 +25,8 @@ public class ActionParserRTL implements IPluginActionDelegate {
         fParamForm.setVisible(true);
 	}
 
+    public RTLParserParameter getRTLParams() {
+        return fParamForm;
+    }
+
 }

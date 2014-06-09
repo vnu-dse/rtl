@@ -134,7 +134,7 @@ public class ActionCheckIntegration implements IPluginActionDelegate {
 
 
 	private void initParams(){
-		fTggRuleCollection = ActionLoadTggRules.getfTggRules();
+		fTggRuleCollection = MainWindow.instance().getModelBrowser().getTggRuleCollection();
     	MatchingEachPart.setListMatch(null);
     	MatchingEachPart.getMatchHasRun().clear();
     	result = false;
