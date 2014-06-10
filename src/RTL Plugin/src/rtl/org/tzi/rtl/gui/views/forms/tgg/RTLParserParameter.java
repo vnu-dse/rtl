@@ -16,13 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import org.tzi.rtl.tgg.mm.MTggRule;
 import org.tzi.rtl.tgg.mm.TggRuleCollection;
@@ -55,9 +49,8 @@ import org.tzi.use.uml.sys.MSystemException;
  */
 @SuppressWarnings("serial")
 public class RTLParserParameter extends JDialog {
-	@SuppressWarnings("unused")
 	private MSystem fSystem;
-	@SuppressWarnings("unused")
+    private Session fSession;
 	private MainWindow fParent;
     private ModelBrowser fModelBrowser;
 	private JTextField fTextModel1;
@@ -73,8 +66,8 @@ public class RTLParserParameter extends JDialog {
 
 	public RTLParserParameter(Session session, MainWindow parent) {
 		super(parent, "RTL Parser Parameter");
-
-		session.addChangeListener(new ChangeListener() {
+        fSession = session;
+		fSession.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				closeDialog();
@@ -245,10 +238,10 @@ public class RTLParserParameter extends JDialog {
 		// allow dialog close on escape key
 		CloseOnEscapeKeyListener ekl = new CloseOnEscapeKeyListener(this);
 		addKeyListener(ekl);
-		// fTextObjectName.addKeyListener(ekl);
-		// fTextModel1.setText("C:/Users/Administrator/Desktop/RestrictedGraphTrafo1_0_src/Act.use");
-		// fTextModel2.setText("C:/Users/Administrator/Desktop/RestrictedGraphTrafo1_0_src/CSP.use");
-		// fTextTgg.setText("C:/Users/Administrator/Desktop/RestrictedGraphTrafo1_0_src/uml2cspRule.tgg");
+        /* Hard code to load model */
+		fTextModel1.setText("demo/Act.use");
+		fTextModel2.setText("demo/CSP.use");
+		fTextTgg.setText("demo/uml2cspRule.tgg");
 	}
 
 	private void closeDialog() {
@@ -267,7 +260,10 @@ public class RTLParserParameter extends JDialog {
 			writeUSEFile();
 
             /* Load model and RTL rules */
-            fModelBrowser.setModel(fModel);
+            if (fModel != null) {
+                fSystem = new MSystem(fModel);
+                fSession.setSystem(fSystem);
+            }
             fModelBrowser.setRTLRule(fTggRules);
             fModelBrowser.setRTLRuleFileName(fTextTgg.getText());
 

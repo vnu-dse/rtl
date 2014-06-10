@@ -10,15 +10,33 @@ import org.tzi.use.runtime.gui.IPluginActionDelegate;
 
 public class ActionNextMatchForward  implements IPluginActionDelegate {
 	Matching currentMatch;
+    Session fSession;
+    PrintWriter fLogWriter;
+
 	public ActionNextMatchForward(){
 		
 	}
 
+    public ActionNextMatchForward(Session session, PrintWriter writer) {
+        this.fSession = session;
+        this.fLogWriter = writer;
+    }
+
 	@Override
 	public void performAction(IPluginAction pluginAction) {
-		MainWindow fMainWindow = pluginAction.getParent();
-		PrintWriter fLogWriter = fMainWindow.logWriter();
-		Session fSession = pluginAction.getSession();
-		ActionFindAllMatchForward.nextStep(fLogWriter, fSession);
+		MainWindow window = pluginAction.getParent();
+		fLogWriter = window.logWriter();
+		fSession = pluginAction.getSession();
+
+        performAction();
 	}
+
+    public void performAction() {
+        if (fSession != null && fLogWriter != null) {
+            fLogWriter.println("++++++++++++++++++++");
+            fLogWriter.println("Find all match forward ...");
+            ActionFindAllMatchForward.nextStep(fLogWriter, fSession);
+            fLogWriter.println("Done.");
+        }
+    }
 }

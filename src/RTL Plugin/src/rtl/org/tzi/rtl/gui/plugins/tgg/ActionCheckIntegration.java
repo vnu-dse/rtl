@@ -35,39 +35,56 @@ public class ActionCheckIntegration implements IPluginActionDelegate {
 	Session fSession;
 	PrintWriter fLogWriter;
 	public ActionCheckIntegration() {
-		
+
 	}
+
+    public ActionCheckIntegration(Session fSession, PrintWriter fLogWriter) {
+        this.fSession = fSession;
+        this.fLogWriter = fLogWriter;
+    }
+
+    public void performAction() {
+        if (fSession != null && fLogWriter != null) {
+            fLogWriter.println("++++++++++++++++++++");
+            fLogWriter.println("Check integration ...");
+            initParams();
+            Matching first = new MatchingEachPart();
+            first.setfSystemState(fSession.system().state());
+            long start = System.currentTimeMillis();
+            // begin test case
+            fSession.system().beginVariation();
+            fSession.system().setRunningTestSuite(true);
+            result = execute(first);
+            // end test case
+            try {
+                fSession.system().endVariation();
+            } catch (MSystemException ex) {
+                ex.printStackTrace();
+            }
+            float elapsedTimeSec = (System.currentTimeMillis()-start)/1000F;
+            fLogWriter.println("Time: " + elapsedTimeSec);
+            System.err.println("Time: " + elapsedTimeSec);
+            if (result){
+                System.err.println("Test case passed");
+                fLogWriter.println("Test case passed");
+            }
+            else{
+                fLogWriter.println("Test case failed");
+                System.err.println("Test case failed");
+            }
+            // release static object
+            MatchingEachPart.listMatch.clear();
+            MatchingEachPart.getMatchHasRun().clear();
+            fLogWriter.println("Done.");
+        }
+    }
+
 	public void performAction(IPluginAction pluginAction) {
 		fSession = pluginAction.getSession();
 		MainWindow fMainWindow = pluginAction.getParent();
 		fLogWriter = fMainWindow.logWriter();
-		initParams();
-    	Matching first = new MatchingEachPart();
-    	first.setfSystemState(fSession.system().state());
-    	long start = System.currentTimeMillis();
-    	// begin test case
-    	fSession.system().beginVariation();
-		fSession.system().setRunningTestSuite(true);
-    	result = execute(first);
-    	// end test case
-    	try {
-			fSession.system().endVariation();
-		} catch (MSystemException ex) {
-			ex.printStackTrace();
-		}
-    	float elapsedTimeSec = (System.currentTimeMillis()-start)/1000F;
-    	System.err.println("Time: " + elapsedTimeSec);
-    	if (result){
-    		System.err.println("Test case passed");
-    		fLogWriter.println("Test case passed");
-    	}
-    	else{
-    		fLogWriter.println("Test case failed");
-    		System.err.println("Test case failed");
-    	}
-    	// release static object
-    	MatchingEachPart.listMatch.clear();
-    	MatchingEachPart.getMatchHasRun().clear();
+
+		performAction();
 	}
 
 
@@ -124,7 +141,8 @@ public class ActionCheckIntegration implements IPluginActionDelegate {
     public List<Matching> findNextMatching(MSystemState fSystemState, MTggRule rule){
 		MClass cls = fSession.system().model().getClass("RuleCollection");
 		MOperation op = cls.operation(rule.name() + RTLKeyword.integration, true);
-		System.out.println("Checking " + rule.name() + "..............");
+		fLogWriter.println("Checking " + rule.name() + "..............");
+
 		MatchingEachPart matching = new MatchingEachPart(op);
 		matching.setRule(rule);
 		List<Matching> result = matching.findMatching(fSystemState);
@@ -133,7 +151,7 @@ public class ActionCheckIntegration implements IPluginActionDelegate {
 	}
 
 
-	private void initParams(){
+	public void initParams(){
 		fTggRuleCollection = MainWindow.instance().getModelBrowser().getTggRuleCollection();
     	MatchingEachPart.setListMatch(null);
     	MatchingEachPart.getMatchHasRun().clear();

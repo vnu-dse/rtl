@@ -25,19 +25,37 @@ public class ActionFindAllMatchForward  implements IPluginActionDelegate {
 	static int size = 0;
 	static int step = 0;
 	static boolean mustRematch = true; // after state changed, we have to re-find matches
+    Session fSession;
+    PrintWriter fLogWriter;
 	public ActionFindAllMatchForward(){
 		
 	}
 
+    public ActionFindAllMatchForward(Session fSession, PrintWriter fLogWriter) {
+        this.fSession = fSession;
+        this.fLogWriter = fLogWriter;
+    }
+
+    public void performAction() {
+        if (fSession != null && fLogWriter != null) {
+            fLogWriter.println("++++++++++++++++++++");
+            fLogWriter.println("Find all match forward ...");
+            findAllMatch(fLogWriter, fSession);
+            step = -1;
+            nextStep(fLogWriter, fSession);
+            fLogWriter.println("Done.");
+        }
+    }
+
 	@Override
 	public void performAction(IPluginAction pluginAction) {
-		Session fSession = pluginAction.getSession();
-		MainWindow fMainWindow = pluginAction.getParent();
-		PrintWriter fLogWriter = fMainWindow.logWriter();
-		findAllMatch(fLogWriter, fSession);
-    	step = -1;
-    	nextStep(fLogWriter, fSession);
+		fSession = pluginAction.getSession();
+		MainWindow window = pluginAction.getParent();
+		fLogWriter = window.logWriter();
+
+        performAction();
 	}
+
 	@SuppressWarnings("unchecked")
 	public static void findAllMatch(PrintWriter fLogWriter, Session fSession){
     	fTggRuleCollection = MainWindow.instance().getModelBrowser().getTggRuleCollection();
@@ -139,4 +157,8 @@ public class ActionFindAllMatchForward  implements IPluginActionDelegate {
 	public static void setMustRematch(boolean _mustRematch) {
 		mustRematch = _mustRematch;
 	}
+
+    public static void setStep(int s) {
+        step = s;
+    }
 }

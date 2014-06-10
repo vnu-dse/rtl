@@ -41,11 +41,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -69,7 +65,11 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
+import org.tzi.rtl.gui.plugins.tgg.*;
 import org.tzi.rtl.gui.views.forms.tgg.RTLParserParameter;
+import org.tzi.rtl.tgg.mm.TggRuleCollection;
+import org.tzi.rtl.trafo.matching.Matching;
+import org.tzi.rtl.trafo.matching.MatchingEachPart;
 import org.tzi.use.config.Options;
 import org.tzi.use.gui.main.runtime.IPluginActionExtensionPoint;
 import org.tzi.use.gui.util.ExtFileFilter;
@@ -994,6 +994,8 @@ public class MainWindow extends JFrame implements StateChangeListener {
         }
 
         public void actionPerformed(ActionEvent e) {
+            ActionCheckIntegration fAction = new ActionCheckIntegration(fSession, logWriter());
+            fAction.performAction();
         }
     }
 
@@ -1005,6 +1007,8 @@ public class MainWindow extends JFrame implements StateChangeListener {
         }
 
         public void actionPerformed(ActionEvent e) {
+            ActionFindAllMatchForward fAction = new ActionFindAllMatchForward(fSession, logWriter());
+            fAction.performAction();
         }
     }
 
@@ -1017,6 +1021,8 @@ public class MainWindow extends JFrame implements StateChangeListener {
         }
 
         public void actionPerformed(ActionEvent e) {
+            ActionNextMatchForward fAction = new ActionNextMatchForward(fSession, logWriter());
+            fAction.performAction();
         }
     }
 
@@ -1028,6 +1034,8 @@ public class MainWindow extends JFrame implements StateChangeListener {
         }
 
         public void actionPerformed(ActionEvent e) {
+            ActionPreviousMatchForward fAction = new ActionPreviousMatchForward(fSession, logWriter());
+            fAction.performAction();
         }
     }
 
@@ -1039,6 +1047,8 @@ public class MainWindow extends JFrame implements StateChangeListener {
         }
 
         public void actionPerformed(ActionEvent e) {
+            ActionRunMatchForward fAction = new ActionRunMatchForward(logWriter());
+            fAction.performAction();
         }
     }
 
