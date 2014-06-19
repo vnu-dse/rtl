@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Plugin-Name: TggPlugin
+Plugin-Version: 1.0
+Main-Class: org.tzi.rtl.gui.plugins.tgg.RTLPlugin
+Plugin-Publisher: Duc-Hanh Dang, Khoa-Hai Nguyen, Xuan-Loi Vu
