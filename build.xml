@@ -1,6 +1,6 @@
 <!--$Id: build.xml 4347 2013-03-09 10:31:02Z lhamann $ -->
 
-<project name="use" default="build" basedir=".">
+<project name="rtl" default="build" basedir=".">
 	<description>Build file for USE</description>
 
 	<property name="release.version" value="3.0.6"/>
@@ -23,6 +23,7 @@
 	<property name="src.main.dir"       location="${src.dir}/main"/>
 	<property name="src.gui.dir"        location="${src.dir}/gui"/>
 	<property name="src.runtime.dir"    location="${src.dir}/runtime" />
+	<property name="src.rtl.dir"       location="${src.dir}/rtl"/>
 	<property name="src.test.dir"       location="${src.dir}/test"/>
 	<property name="test.dir"           location="${basedir}/test"/>
 	<property name="intern.dir"         value="${basedir}/intern"/>
@@ -148,6 +149,13 @@
 
 				<uptodate srcfile="${parser.dir}/base/SoilBase.gpart"
       	          targetfile="${parser.dir}/soil/SoilParser.java"/>
+
+				<!-- rtl parser >
+				<uptodate srcfile="${parser.dir}/soil/Soil.gpart"
+				    	  targetfile="${parser.dir}/soil/SoilParser.java"/>
+
+				<uptodate srcfile="${parser.dir}/base/SoilBase.gpart"
+						  targetfile="${parser.dir}/soil/SoilParser.java"/-->
 
 				<!-- testsuite parser grammar exists -->
 				<available file="${parser.dir}/testsuite/TestSuite.g" />
