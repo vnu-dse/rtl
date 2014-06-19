@@ -1,2 +1,0 @@
-context j:Job inv bossWorkerChain:
-  j.worker->size<=1

@@ -1,2 +1,0 @@
-context c:Company inv completeHierarchy:
-  c.job->exists(top|top.workerPlus()->including(top)=c.job)

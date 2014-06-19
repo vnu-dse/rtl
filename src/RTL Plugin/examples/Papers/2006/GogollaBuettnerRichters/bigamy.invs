@@ -1,2 +1,0 @@
-context Person inv bigamy:
-  wife.isDefined and husband.isDefined

@@ -1,9 +1,0 @@
-model t9
-
-class A
-end
-
-constraints
-
-context A inv:
-  Set{Set{1,2}}->oclIsKindOf(Set(Integer))

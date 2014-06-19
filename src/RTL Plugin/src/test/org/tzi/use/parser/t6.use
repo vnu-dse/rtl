@@ -1,9 +1,0 @@
-model t6
-
-class A
-end
-
-constraints
-
-context A inv:
-  self->notEmpty

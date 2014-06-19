@@ -1,2 +1,0 @@
-context Job inv hierarchyBinTree:
-  self.worker->size=0 or self.worker->size=2

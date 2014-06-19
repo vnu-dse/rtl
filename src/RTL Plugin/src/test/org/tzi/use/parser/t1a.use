@@ -1,5 +1,0 @@
-model t1a
-
-enum A { foo }
-
-enum A { bar }

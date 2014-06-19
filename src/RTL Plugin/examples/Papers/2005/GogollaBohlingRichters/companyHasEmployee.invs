@@ -1,2 +1,0 @@
-context c:Company inv companyHasEmployee:
-  c.job->notEmpty

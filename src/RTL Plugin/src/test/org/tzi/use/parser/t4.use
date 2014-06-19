@@ -1,9 +1,0 @@
-model t4
-
-class A
-end
-
-constraints
-
-context A inv:
-  A.allInstances->notEmpty
