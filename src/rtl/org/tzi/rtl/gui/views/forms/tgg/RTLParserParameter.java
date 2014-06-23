@@ -239,9 +239,9 @@ public class RTLParserParameter extends JDialog {
 		CloseOnEscapeKeyListener ekl = new CloseOnEscapeKeyListener(this);
 		addKeyListener(ekl);
         /* Hard code to load model */
-		fTextModel1.setText("demo/Act.use");
-		fTextModel2.setText("demo/CSP.use");
-		fTextTgg.setText("demo/uml2cspRule.tgg");
+		fTextModel1.setText("demo/uml2csp/Act.use");
+		fTextModel2.setText("demo/uml2csp/CSP.use");
+		fTextTgg.setText("demo/uml2csp/uml2cspRule.tgg");
 	}
 
 	private void closeDialog() {
@@ -261,13 +261,37 @@ public class RTLParserParameter extends JDialog {
 
             /* Load model and RTL rules */
             if (fModel != null) {
-                fSystem = new MSystem(fModel);
-                fSession.setSystem(fSystem);
-            }
-            fModelBrowser.setRTLRule(fTggRules);
-            fModelBrowser.setRTLRuleFileName(fTextTgg.getText());
+                /* Load USE model */
+                MModel newModel = null;
+                MSystem system = null;
+                try {
+                    newModel = USECompiler.compileSpecification(useContent, modelName,
+                            fLogWriter, new ModelFactory());
+                    fLogWriter.println("Load model " + modelName + " ...");
+                    if (newModel != null) {
+                        fLogWriter.println(newModel.getStats());
+                        // create system
+                        system = new MSystem(newModel);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                // set new system (may be null if compilation failed)
+                final MSystem system2 = system; // need final variable for Runnable
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        fSession.setSystem(system2);
+                    }
+                });
+                /* Load TGG rules */
+                fModelBrowser.setRTLRule(fTggRules);
+                fModelBrowser.setRTLRuleFileName(fTextTgg.getText());
 
-            fLogWriter.println("Compile success");
+                fLogWriter.println("Compile successfully");
+            } else {
+                fLogWriter.println("Can not compile source files");
+            }
+
 		} else {
 			fLogWriter.println("Error in path file");
 		}
