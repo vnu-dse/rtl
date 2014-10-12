@@ -18,13 +18,13 @@
 			toolbaritem="Run test case"
 			id="org.tzi.rtl.gui.plugins.tgg.ActionCheckIntegration">
 		</action>
-		<action label="Find all match" icon="resources/RTLFindMatch.png"
-			class="org.tzi.rtl.gui.plugins.tgg.ActionFindMatchForward"
-			tooltip="Find all match"
+		<action label="Auto run forward" icon="resources/RTLAutoRun.png"
+			class="org.tzi.rtl.gui.plugins.tgg.ActionAutoMatchForward"
+			tooltip="Auto run forward"
 			menu="Forward transformation"
-			menuitem="Find match..."
-			toolbaritem="Find all match"
-			id="org.tzi.rtl.gui.plugins.tgg.ActionFindMatchForward">
+			menuitem="Auto run forward"
+			toolbaritem="Auto run forward"
+			id="org.tzi.rtl.gui.plugins.tgg.ActionAutoMatchForward">
 		</action>
 		
 		<action label="Run match" icon="resources/RTLRunMatch.png"

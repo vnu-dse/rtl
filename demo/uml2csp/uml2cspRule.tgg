@@ -49,6 +49,7 @@ checkSource(
 	init: InitialNode
 	(theActivityEdgeA, init): ConnectsFrom
 	[theActivityEdgeA.name<>oclUndefined(String)]
+	[theActivityEdgeA.cp_ActivityEdge_AE2P->size()=0]
 }checkTarget(
 ){
 	theProcessA: Process
@@ -70,6 +71,8 @@ checkSource(
 	(theActivityEdgeA, action): ConnectsTo
 	(theActivityEdgeB, action): ConnectsFrom
 	[action.name<>oclUndefined(String)]
+	[theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0]
+	[action.cp_Action_AC2E->size()=0]
 }checkTarget(
 	theProcessA: Process
 ){
@@ -97,6 +100,7 @@ checkSource(
 ){
 	finalNode: FinalNode
 	(theActivityEdgeA, finalNode): ConnectsTo
+	[finalNode.cp_FinalNode_F2P->size()=0]
 }checkTarget(
 	theProcessA: Process	
 ){
@@ -129,6 +133,9 @@ checkSource(
 	[theActivityEdgeC.name<>oclUndefined(String)]
 	[theActivityEdgeD.guard = 'else']
 	[decisionNode.outEdge->size()=3]
+	[theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0]
+	[theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0]
+	[theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0]
 }checkTarget(
 	theProcessA: Process
 ){
@@ -170,6 +177,8 @@ checkSource(
 	[theActivityEdgeB.name<>oclUndefined(String)]
 	[theActivityEdgeC.guard = 'else']
 	[decisionNode.outEdge->size()=2]
+	[theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0]
+	[theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0]
 }checkTarget(
 	theProcessA: Process
 ){
@@ -206,6 +215,9 @@ checkSource(
 	[theActivityEdgeB.name<>oclUndefined(String)]
 	[theActivityEdgeC.name<>oclUndefined(String)]
 	[theActivityEdgeD.name<>oclUndefined(String)]
+	[theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0]
+	[theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0]
+	[theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0]
 }checkTarget(
 	theProcessA: Process
 ){
@@ -246,6 +258,7 @@ checkSource(
 	(theActivityEdgeC, joinNode): ConnectsTo
 	(theActivityEdgeD, joinNode): ConnectsFrom
 	[theActivityEdgeD.name<>oclUndefined(String)]
+	[theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0]
 }checkTarget(
 	theProcessA: Process
 	theProcessB: Process
@@ -296,6 +309,7 @@ checkSource(
 	(theActivityEdgeB, mergeNode): ConnectsTo
 	(theActivityEdgeC, mergeNode): ConnectsFrom	
 	[theActivityEdgeC.name<>oclUndefined(String)]
+	[theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0]
 }checkTarget(
 	theProcessA: Process
 	theProcessB: Process

@@ -261,14 +261,14 @@ public class MainWindow extends JFrame implements StateChangeListener {
                 "Open RestrictedGraphTrafo form");
         addToToolBar(fToolBar, fRTLCheckIntegration,
                 "Check RTL integration");
-        addToToolBar(fToolBar, fRTLFindAllMatchForward,
-                "Find all RTL match forward");
+        addToToolBar(fToolBar, fRTLAutoRunMatchForward,
+                "Auto trafo forward");
         addToToolBar(fToolBar, fRTLPreviousMatchForward,
                 "Previous RTL match forward");
         addToToolBar(fToolBar, fRTLNextMatchForward,
                 "Next RTL match forward");
         addToToolBar(fToolBar, fRTLRunMatchForward,
-                "Run RTL match forward");
+                "Run current match");
 
         // create the menubar
 		fMenuBar = new JMenuBar();
@@ -891,7 +891,7 @@ public class MainWindow extends JFrame implements StateChangeListener {
     /* RestrictedGraphTrafo Action */
     private ActionFileOpenRTLSpec fActionRTLFileOpenSpec = new ActionFileOpenRTLSpec();
     private ActionCheckRTLIntegration fRTLCheckIntegration = new ActionCheckRTLIntegration();
-    private ActionFindAllRTLMatchForward fRTLFindAllMatchForward = new ActionFindAllRTLMatchForward();
+    private ActionRTLAutoMatchForward fRTLAutoRunMatchForward = new ActionRTLAutoMatchForward();
     private ActionNextRTLMatchForward fRTLNextMatchForward = new ActionNextRTLMatchForward();
     private ActionPreviousRTLMatchForward fRTLPreviousMatchForward = new ActionPreviousRTLMatchForward();
     private ActionRunRTLMatchForward fRTLRunMatchForward = new ActionRunRTLMatchForward();
@@ -1000,14 +1000,14 @@ public class MainWindow extends JFrame implements StateChangeListener {
     }
 
     /* RestrictedGraphTrafo ActionFindAllMatchForward */
-    private class ActionFindAllRTLMatchForward extends AbstractAction {
-        ActionFindAllRTLMatchForward() {
-            super("Find all RTL match forward", new ImageIcon(Options.iconDir
-                    + "RTLFindMatch.gif"));
+    private class ActionRTLAutoMatchForward extends AbstractAction {
+    	ActionRTLAutoMatchForward() {
+            super("Auto forward trafo", new ImageIcon(Options.iconDir
+                    + "RTLAutoRun.gif"));
         }
 
         public void actionPerformed(ActionEvent e) {
-            ActionFindAllMatchForward fAction = new ActionFindAllMatchForward(fSession, logWriter());
+        	ActionAutoMatchForward fAction = new ActionAutoMatchForward(fSession, logWriter());
             fAction.performAction();
         }
     }
@@ -1047,7 +1047,7 @@ public class MainWindow extends JFrame implements StateChangeListener {
         }
 
         public void actionPerformed(ActionEvent e) {
-            ActionRunMatchForward fAction = new ActionRunMatchForward(logWriter());
+            ActionRunMatchForward fAction = new ActionRunMatchForward(fSession, logWriter());
             fAction.performAction();
         }
     }

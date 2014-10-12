@@ -49,7 +49,6 @@ import org.tzi.use.uml.sys.MSystemException;
  */
 @SuppressWarnings("serial")
 public class RTLParserParameter extends JDialog {
-	private MSystem fSystem;
     private Session fSession;
 	private MainWindow fParent;
     private ModelBrowser fModelBrowser;
@@ -239,9 +238,9 @@ public class RTLParserParameter extends JDialog {
 		CloseOnEscapeKeyListener ekl = new CloseOnEscapeKeyListener(this);
 		addKeyListener(ekl);
         /* Hard code to load model */
-		fTextModel1.setText("demo/uml2csp/Act.use");
-		fTextModel2.setText("demo/uml2csp/CSP.use");
-		fTextTgg.setText("demo/uml2csp/uml2cspRule.tgg");
+		//fTextModel1.setText("demo/uml2csp/Act.use");
+		//fTextModel2.setText("demo/uml2csp/CSP.use");
+		//fTextTgg.setText("demo/uml2csp/uml2cspRule.tgg");
 	}
 
 	private void closeDialog() {

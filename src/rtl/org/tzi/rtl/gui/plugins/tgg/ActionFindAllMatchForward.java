@@ -130,15 +130,20 @@ public class ActionFindAllMatchForward  implements IPluginActionDelegate {
 		return null;
 	}
 
-	public static void runMatch(PrintWriter fLogWriter){
+	public static void runMatch(Session _fSession, PrintWriter fLogWriter){
 		if (currentMatch != null){
     		setMustRematch(true);
     		currentMatch.runOperation(fLogWriter);
-    		if (currentMatch.isHasFailed())
+    		if (currentMatch.isHasFailed()){
     			fLogWriter.println("Run match fail.");
-    		else
+    			currentMatch = null;
+    		}
+    		else{
     			fLogWriter.println("Run match success.");
-    		currentMatch = null;
+    			currentMatch = null;
+    			nextStep(fLogWriter, _fSession);
+    		}
+    		//currentMatch = null;
     	}
     	else
     		fLogWriter.println("No match selected.");

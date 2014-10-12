@@ -405,7 +405,11 @@ public class MRule implements MModelElement {
 		// OCL condition
 		ocl = buildOCLConditionRight(indent + indentNum * 2);
 		if (!ocl.equals(""))
-			post += RTLKeyword.and + ocl;
+			if (post.endsWith("|"))
+				post += ocl;
+			else
+				post += RTLKeyword.and + ocl;
+		
 		if (post.endsWith(RTLKeyword.and))
 			post = post.substring(0, post.length() - RTLKeyword.and.length());
 		return post;

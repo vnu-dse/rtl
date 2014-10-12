@@ -364,6 +364,8 @@ post trafoActionNode_coEvol_post:
       action.inEdge->includesAll(Set{theActivityEdgeA}) and
       action.outEdge->includesAll(Set{theActivityEdgeB}) and
       action.name<>oclUndefined(String) and
+      theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+      action.cp_Action_AC2E->size()=0 and
       --T_postcondition
       Process.allInstances->includesAll(Set{theProcessA}) and
       (ProcessAssignment.allInstances - ProcessAssignment.allInstances@pre)->exists(assignment|
@@ -439,6 +441,8 @@ post trafoDecision2Node_coEvol_post:
         theActivityEdgeB.name<>oclUndefined(String) and
         theActivityEdgeC.guard = 'else' and
         decisionNode.outEdge->size()=2 and
+        theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+        theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
         --T_postcondition
         Process.allInstances->includesAll(Set{theProcessA}) and
         (ProcessAssignment.allInstances - ProcessAssignment.allInstances@pre)->exists(assignment|
@@ -525,6 +529,9 @@ post trafoDecision3Node_coEvol_post:
           theActivityEdgeC.name<>oclUndefined(String) and
           theActivityEdgeD.guard = 'else' and
           decisionNode.outEdge->size()=3 and
+          theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+          theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
+          theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0 and
           --T_postcondition
           Process.allInstances->includesAll(Set{theProcessA}) and
           (ProcessAssignment.allInstances - ProcessAssignment.allInstances@pre)->exists(assignment|
@@ -614,6 +621,7 @@ post trafoFinalNode_coEvol_post:
   ActivityEdge.allInstances->includesAll(Set{theActivityEdgeA}) and
   (FinalNode.allInstances - FinalNode.allInstances@pre)->exists(finalNode|
     finalNode.inEdge->includesAll(Set{theActivityEdgeA}) and
+    finalNode.cp_FinalNode_F2P->size()=0 and
     --T_postcondition
     Process.allInstances->includesAll(Set{theProcessA}) and
     (ProcessAssignment.allInstances - ProcessAssignment.allInstances@pre)->exists(assignment|
@@ -683,6 +691,9 @@ post trafoForkNode_coEvol_post:
           theActivityEdgeB.name<>oclUndefined(String) and
           theActivityEdgeC.name<>oclUndefined(String) and
           theActivityEdgeD.name<>oclUndefined(String) and
+          theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+          theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
+          theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0 and
           --T_postcondition
           Process.allInstances->includesAll(Set{theProcessA}) and
           (ProcessAssignment.allInstances - ProcessAssignment.allInstances@pre)->exists(assignment|
@@ -738,6 +749,7 @@ post trafoInitialNode_coEvol_post:
     (InitialNode.allInstances - InitialNode.allInstances@pre)->exists(init|
       init.outEdge->includesAll(Set{theActivityEdgeA}) and
       theActivityEdgeA.name<>oclUndefined(String) and
+      theActivityEdgeA.cp_ActivityEdge_AE2P->size()=0 and
       --T_postcondition
       (Process.allInstances - Process.allInstances@pre)->exists(theProcessA|
         --C_postcondition
@@ -814,6 +826,7 @@ post trafoJoinNode_coEvol_post:
       joinNode.inEdge->includesAll(Set{theActivityEdgeC}) and
       joinNode.outEdge->includesAll(Set{theActivityEdgeD}) and
       theActivityEdgeD.name<>oclUndefined(String) and
+      theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0 and
       --T_postcondition
       Process.allInstances->includesAll(Set{theProcessA,theProcessB,theProcessC}) and
       (ProcessAssignment.allInstances - ProcessAssignment.allInstances@pre)->exists(assignment1|
@@ -911,6 +924,7 @@ post trafoMergeNode_coEvol_post:
       mergeNode.inEdge->includesAll(Set{theActivityEdgeB}) and
       mergeNode.outEdge->includesAll(Set{theActivityEdgeC}) and
       theActivityEdgeC.name<>oclUndefined(String) and
+      theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
       --T_postcondition
       Process.allInstances->includesAll(Set{theProcessA,theProcessB}) and
       (ProcessAssignment.allInstances - ProcessAssignment.allInstances@pre)->exists(assignment1|
@@ -957,6 +971,8 @@ pre trafoActionNode_forwTrafo_pre:
     action.outEdge->includesAll(Set{theActivityEdgeB}) and
     theActivityEdgeA.name<>oclUndefined(String)  and
     action.name<>oclUndefined(String) and
+    theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+    action.cp_Action_AC2E->size()=0 and
     --T_precondition and
     --C_precondition
     theProcessA.cp_Process_AE2P->includesAll(Set{ae2p1}) and
@@ -1028,6 +1044,8 @@ pre trafoDecision2Node_forwTrafo_pre:
     theActivityEdgeB.name<>oclUndefined(String) and
     theActivityEdgeC.guard = 'else' and
     decisionNode.outEdge->size()=2 and
+    theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+    theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
     --T_precondition and
     --C_precondition
     theProcessA.cp_Process_AE2P->includesAll(Set{ae2p1}) and
@@ -1108,6 +1126,9 @@ pre trafoDecision3Node_forwTrafo_pre:
     theActivityEdgeC.name<>oclUndefined(String) and
     theActivityEdgeD.guard = 'else' and
     decisionNode.outEdge->size()=3 and
+    theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+    theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
+    theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0 and
     --T_precondition and
     --C_precondition
     theProcessA.cp_Process_AE2P->includesAll(Set{ae2p1}) and
@@ -1194,6 +1215,8 @@ pre trafoFinalNode_forwTrafo_pre:
   let theProcessA:Process = matchTL.theProcessA in
     --S_precondition
     finalNode.inEdge->includesAll(Set{theActivityEdgeA}) and
+    theActivityEdgeA.name<>oclUndefined(String)  and
+    finalNode.cp_FinalNode_F2P->size()=0 and
     --T_precondition and
     --C_precondition
     theActivityEdgeA.cp_ActivityEdge_AE2P->includesAll(Set{ae2p}) and
@@ -1255,6 +1278,9 @@ pre trafoForkNode_forwTrafo_pre:
     theActivityEdgeB.name<>oclUndefined(String) and
     theActivityEdgeC.name<>oclUndefined(String) and
     theActivityEdgeD.name<>oclUndefined(String) and
+    theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+    theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
+    theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0 and
     --T_precondition and
     --C_precondition
     theProcessA.cp_Process_AE2P->includesAll(Set{ae2p1}) and
@@ -1323,7 +1349,8 @@ pre trafoInitialNode_forwTrafo_pre:
   let theActivityEdgeA:ActivityEdge = matchSR.theActivityEdgeA in
     --S_precondition
     init.outEdge->includesAll(Set{theActivityEdgeA}) and
-    theActivityEdgeA.name<>oclUndefined(String)
+    theActivityEdgeA.name<>oclUndefined(String) and
+    theActivityEdgeA.cp_ActivityEdge_AE2P->size()=0
     --T_precondition
     --C_precondition    
 
@@ -1374,6 +1401,7 @@ pre trafoJoinNode_forwTrafo_pre:
     theActivityEdgeB.name<>oclUndefined(String) and
     theActivityEdgeC.name<>oclUndefined(String)  and
     theActivityEdgeD.name<>oclUndefined(String) and
+    theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0 and
     --T_precondition and
     --C_precondition
     theActivityEdgeB.cp_ActivityEdge_AE2P->includesAll(Set{ae2p2}) and
@@ -1473,6 +1501,7 @@ pre trafoMergeNode_forwTrafo_pre:
     theActivityEdgeA.name<>oclUndefined(String) and
     theActivityEdgeB.name<>oclUndefined(String)  and
     theActivityEdgeC.name<>oclUndefined(String) and
+    theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
     --T_precondition and
     --C_precondition
     theActivityEdgeB.cp_ActivityEdge_AE2P->includesAll(Set{ae2p2}) and
@@ -1545,6 +1574,8 @@ pre trafoActionNode_integration_pre:
     action.outEdge->includesAll(Set{theActivityEdgeB}) and
     theActivityEdgeA.name<>oclUndefined(String)  and
     action.name<>oclUndefined(String) and
+    theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+    action.cp_Action_AC2E->size()=0 and
     --T_precondition
     assignment.left->includesAll(Set{theProcessA}) and
     prefix.process->includesAll(Set{assignment}) and
@@ -1614,6 +1645,8 @@ pre trafoDecision2Node_integration_pre:
     theActivityEdgeB.name<>oclUndefined(String) and
     theActivityEdgeC.guard = 'else' and
     decisionNode.outEdge->size()=2 and
+    theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+    theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
     --T_precondition
     assignment.left->includesAll(Set{theProcessA}) and
     condition1.process->includesAll(Set{assignment}) and
@@ -1694,6 +1727,9 @@ pre trafoDecision3Node_integration_pre:
     theActivityEdgeC.name<>oclUndefined(String) and
     theActivityEdgeD.guard = 'else' and
     decisionNode.outEdge->size()=3 and
+    theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+    theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
+    theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0 and
     --T_precondition
     assignment.left->includesAll(Set{theProcessA}) and
     condition1.process->includesAll(Set{assignment}) and
@@ -1774,6 +1810,8 @@ pre trafoFinalNode_integration_pre:
   let theProcessA:Process = matchTR.theProcessA in
     --S_precondition
     finalNode.inEdge->includesAll(Set{theActivityEdgeA}) and
+    theActivityEdgeA.name<>oclUndefined(String)  and
+    finalNode.cp_FinalNode_F2P->size()=0 and
     --T_precondition
     SKIP.process->includesAll(Set{assignment}) and
     assignment.left->includesAll(Set{theProcessA}) and
@@ -1837,6 +1875,9 @@ pre trafoForkNode_integration_pre:
     theActivityEdgeB.name<>oclUndefined(String) and
     theActivityEdgeC.name<>oclUndefined(String) and
     theActivityEdgeD.name<>oclUndefined(String) and
+    theActivityEdgeB.cp_ActivityEdge_AE2P->size()=0 and
+    theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
+    theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0 and
     --T_precondition
     assignment.left->includesAll(Set{theProcessA}) and
     concurrency1.process->includesAll(Set{assignment}) and
@@ -1901,7 +1942,8 @@ pre trafoInitialNode_integration_pre:
   let theProcessA:Process = matchTR.theProcessA in
     --S_precondition
     init.outEdge->includesAll(Set{theActivityEdgeA}) and
-    theActivityEdgeA.name<>oclUndefined(String)
+    theActivityEdgeA.name<>oclUndefined(String) and
+    theActivityEdgeA.cp_ActivityEdge_AE2P->size()=0
     --T_precondition
     --C_precondition    
 
@@ -1961,6 +2003,7 @@ pre trafoJoinNode_integration_pre:
     theActivityEdgeB.name<>oclUndefined(String) and
     theActivityEdgeC.name<>oclUndefined(String)  and
     theActivityEdgeD.name<>oclUndefined(String) and
+    theActivityEdgeD.cp_ActivityEdge_AE2P->size()=0 and
     --T_precondition
     assignment1.left->includesAll(Set{theProcessA}) and
     prefix1.process->includesAll(Set{assignment1}) and
@@ -2052,6 +2095,7 @@ pre trafoMergeNode_integration_pre:
     theActivityEdgeA.name<>oclUndefined(String) and
     theActivityEdgeB.name<>oclUndefined(String)  and
     theActivityEdgeC.name<>oclUndefined(String) and
+    theActivityEdgeC.cp_ActivityEdge_AE2P->size()=0 and
     --T_precondition
     assignment1.left->includesAll(Set{theProcessA}) and
     theProcessC.process->includesAll(Set{assignment1}) and
