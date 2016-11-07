@@ -1,0 +1,17 @@
+**** Installation RTL*****
+
+1. Công cụ:
+- JDK 1.7 trở lên
+- Eclipse/Netbean
+
+2. Cài đặt
+- Clone project trên github
+
+* Hướng dẫn cho Eclipse
+- Giải nén project (Nếu download as zip)
+- Tạo mới Project, trỏ đường dẫn tới thư mục vừa giải nén (ví dụ C:\Users\haink1\Desktop\rtl-master\rtl-master)
+- Run as/Run configurations
+  + Main class: org.tzi.use.main.Main
+  + Arguments/Program arguments: -H="C:\Users\haink1\Desktop\rtl-master\rtl-master"
+
+3. Run sample: thư mục demo/CD2RDS, demo/uml2csp
